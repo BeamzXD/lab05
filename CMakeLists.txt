@@ -1,15 +1,12 @@
 cmake_minimum_required(VERSION 3.4)
-
 project(Test_banking)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(BUILD_TESTS "Build tests" OFF)
-option(COVERAGE "Check coverage" ON)
 
-if (COVERAGE)
-	target_compile_options(check PRIVATE --coverage)
-	target_link_libraries(check --coverage)
+if(BUILD_TESTS)
+  add_compile_options(--coverage)
 endif()
 
 add_library(banking STATIC ${CMAKE_CURRENT_SOURCE_DIR}/banking/Transaction.cpp ${CMAKE_CURRENT_SOURCE_DIR}/banking/Account.cpp)
