@@ -24,5 +24,5 @@ jobs:
     run: cmake --build ${{github.workspace}}/build
     
   - name: Run tests
-    run: build/check
+    run: cmake --build _build --target test -- ARGS=--verbose
 
