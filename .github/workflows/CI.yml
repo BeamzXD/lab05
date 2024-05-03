@@ -18,11 +18,19 @@ jobs:
   - uses: actions/checkout@v3
 
   - name: Config banking with tests
-    run: cmake -H. -B_build -DBUILD_TESTS=ON
+    run: cmake -H. -B ${{github.workspace}}/build -DBUILD_TESTS=ON
     
   - name: Build banking
-    run: cmake --build _build
+    run: cmake --build ${{github.workspace}}/build
     
   - name: Run tests
-    run: cmake --build _build --target test -- ARGS=--verbose
+    run: build/check
+    
+  - name: Do lcov stuff
+    run: lcov -c -d build/CMakeFiles/banking.dir/banking/ --include *.cpp --output-file ./coverage/lcov.info
+    
+  - name: Publish to coveralls.io
+    uses: coverallsapp/github-action@v1.1.2
+    with:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
 

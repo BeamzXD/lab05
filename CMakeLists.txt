@@ -11,6 +11,10 @@ add_library(banking STATIC banking/Account.cpp banking/Transaction.cpp)
 target_include_directories(banking PUBLIC banking/)
 
 if(BUILD_TESTS)
+  add_compile_options(--coverage)
+endif()
+
+if(BUILD_TESTS)
 	enable_testing()
 	add_subdirectory(third-party/gtest)
 	add_executable(check tests/tests.cpp)
