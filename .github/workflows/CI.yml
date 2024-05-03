@@ -17,9 +17,6 @@ jobs:
   steps:
   - uses: actions/checkout@v3
 
-  - name: Install coveralls
-    run: pip install --user cpp-coveralls
-
   - name: Config banking with tests
     run: cmake -H. -B_build -DBUILD_TESTS=ON
     
