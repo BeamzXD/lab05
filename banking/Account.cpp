@@ -1,6 +1,5 @@
-#include "Account.h"
-
 #include <stdexcept>
+#include "Account.h"
 
 Account::Account(int id, int balance)
     : id_(id), balance_(balance), is_locked_(false) {}
